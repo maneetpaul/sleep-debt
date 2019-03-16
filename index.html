@@ -15,8 +15,10 @@
 </table>
 
 </br>
-</br>
 
+<h3>How many hours of sleep do you <b>actually</b> get every night?</h3>
+
+<form>
 <table>
 
 <tr>
@@ -50,7 +52,28 @@
 
 </table>
 
+<!-- return false prevents the form from "submitting" and refreshing the page -->
+<input type="submit" value="Submit" onClick="dailySleepHours(); return false;">
+
+</form>
+<p id="testBox"></p>
+
 </center>
+
+<script type="text/javascript">
+
+
+// Currently this is a test function that outputs Sunday's sleep hours
+const dailySleepHours = day => {
+
+let sundaySleepHours = document.getElementById("sundaySleepHours").value;
+document.getElementById("testBox").innerHTML = sundaySleepHours;
+
+};
+
+
+</script>
+
 </body>
 
 
