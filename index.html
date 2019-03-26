@@ -53,7 +53,7 @@
 </table>
 
 <!-- return false prevents the form from "submitting" and refreshing the page -->
-<input type="submit" value="Submit" onClick="dailySleepHours(); return false;">
+<input type="submit" value="Submit" onClick="calculateSleepDebt(); return false;">
 
 </form>
 <p id="testBox"></p>
@@ -62,15 +62,60 @@
 
 <script type="text/javascript">
 
+const calculateSleepDebt = () => {
 
-// Currently this is a test function that outputs Sunday's sleep hours
-const dailySleepHours = day => {
-
+// Get daily sleep hours
 let sundaySleepHours = document.getElementById("sundaySleepHours").value;
-document.getElementById("testBox").innerHTML = sundaySleepHours;
+let mondaySleepHours = document.getElementById("mondaySleepHours").value;
+let tuesdaySleepHours = document.getElementById("tuesdaySleepHours").value;
+let wednesdaySleepHours = document.getElementById("wednesdaySleepHours").value;
+let thursdaySleepHours = document.getElementById("thursdaySleepHours").value;
+let fridaySleepHours = document.getElementById("fridaySleepHours").value;
+let saturdaySleepHours = document.getElementById("saturdaySleepHours").value;
 
-};
+// Test to make sure data capture works
+// document.getElementById("testBox").innerHTML = sundaySleepHours;
 
+
+
+
+
+// Add up all the daily sleep hours into one total
+// Put a + before each var so it is treated as an int and not a string
+const actualSleep = +sundaySleepHours + +mondaySleepHours + +tuesdaySleepHours + +wednesdaySleepHours + +thursdaySleepHours + +fridaySleepHours + +saturdaySleepHours;
+
+// Test to make sure actualSleepHours prints
+// document.getElementById("testBox").innerHTML = actualSleep;
+
+
+
+
+// Get the ideal sleep hours from the input
+let idealSleepHours = document.getElementById("idealSleepHours").value;
+
+const idealSleep = idealSleepHours * 7;
+
+// Test to make sure idealSleep prints
+// document.getElementById("testBox").innerHTML = idealSleep;
+
+
+// Calculations
+
+if (actualSleep === idealSleep) {
+    document.getElementById("testBox").innerHTML = 'You got the perfect amount of sleep!';
+  }
+ 
+
+  else if (actualSleep > idealSleep){
+    document.getElementById("testBox").innerHTML = `You slept too much! Cut down your sleep by ${actualSleep - idealSleep} hour(s).`;
+  } 
+  
+ 
+  else if (actualSleep < idealSleep){
+    document.getElementById("testBox").innerHTML = `You need to sleep more! You should sleep ${idealSleep - actualSleep} hour(s).`;
+  }  
+
+}
 
 </script>
 
