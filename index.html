@@ -7,20 +7,27 @@
 <body>
 <center>
 <h1>Sleep Debt Calculator</h1>
+<p id="description">
+Sleep debt is a condition that if not taken seriously, can impact your mental and physical
+health. When the hours of sleep you are getting are below the amount of sleep your
+body actually needs, you accumulate a sleep deficit, aka sleep debt. Similarly, if you
+oversleep, you can also build up your sleep debt.<br/><br/>
+Use this calculator to determine if you are getting the right amount of sleep during the week or if
+you have a sleep debt.
+</p>
 
-<table>
+<table id="idealSleepTable">
 <tr>
-	<td>How many hours of sleep do you ideally want every night?</td>
+	<td>How many hours of sleep do you <b>ideally</b> want every night?</td>
 	<td><input type="number" id="idealSleepHours"></td>
 </table>
 
 </br>
 
-<h3>How many hours of sleep do you <b>actually</b> get every night?</h3>
+<p>How many hours of sleep do you <b>actually</b> get every night?</p>
 
 <form>
 <table>
-
 <tr>
 	<td>Sunday Night</td>
 	<td><input type="number" id="sundaySleepHours"></td>
@@ -49,13 +56,12 @@
 	<td>Saturday Night</td>
 	<td><input type="number" id="saturdaySleepHours"></td>
 </tr>	
-
 </table>
-
+</br>
 <!-- return false prevents the form from "submitting" and refreshing the page -->
 <input type="submit" value="Submit" onClick="calculateSleepDebt(); return false;">
-
 </form>
+
 <p id="testBox"></p>
 
 </center>
@@ -101,7 +107,7 @@ const idealSleep = idealSleepHours * 7;
 
 // Calculations
 
-if (actualSleep === idealSleep) {
+if (actualSleep === idealSleep && actualSleep > 0 && idealSleep > 7) {
     document.getElementById("testBox").innerHTML = 'You got the perfect amount of sleep!';
   }
  
@@ -113,6 +119,10 @@ if (actualSleep === idealSleep) {
  
   else if (actualSleep < idealSleep){
     document.getElementById("testBox").innerHTML = `You need to sleep more! You should sleep ${idealSleep - actualSleep} hour(s).`;
+  }  
+  
+else if (actualSleep === idealSleep){
+    document.getElementById("testBox").innerHTML = 'Error!';
   }  
 
 }
